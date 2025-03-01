@@ -41,7 +41,13 @@
                      @if (Route::has('login'))
 
                      @auth
-                    <li> <x-app-layout></x-app-layout></li>
+                    <li> <x-app-layout>
+                         </x-app-layout>
+                     </li>
+
+                     <li><a href="{{url('my_post')}}">My Post</a></li>
+                    <li><a href="{{url('create_post')}}">Create Post</a></li>
+
 
                      
                      @else 

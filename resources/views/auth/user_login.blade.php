@@ -1,0 +1,1 @@
+<form method="POST" action="{{ route('user.login') }}">  // Assuming you name the route 'user.login'
