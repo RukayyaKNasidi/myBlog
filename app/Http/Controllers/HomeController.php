@@ -13,11 +13,14 @@ class HomeController extends Controller
     public function index()
     {
         if (Auth::id()) {
+
             $post = Post::where('post_status', '=','active')->get();
             $usertype = Auth()->user()->usertype;
             if ($usertype == 'user') {
+
                 return view('home.homepage', compact('post'));
             } else if ($usertype == 'admin') {
+
                 return view('admin.adminhome', compact('post'));
             } else {
                 return view('home.homepage', compact('post'));
@@ -54,17 +57,19 @@ class HomeController extends Controller
     public function homepage()
     {
         $post = Post::where('post_status', '=','active')->get();
-        return view('home.homepage', compact('post'));
+        return view('home.homepage',compact('post'));
     }
 
     public function post_details($id)
     {
         $post = Post::find($id);
-        return view('home.post_details', compact('post'));
+        return view('home.post_details',compact('post'));
     }
 
     public function create_post()
     {
+      
+
         return view('home.create_post');
     }
 
@@ -103,17 +108,13 @@ class HomeController extends Controller
 
     public function my_post()
     {
-        if (auth()->check()) {
-            
             $user = Auth()->user();
             $user_id = $user->id;
 
-            $data = Post::all();
+            $data = Post::where('user_id','=',$user_id)->get();
 
             return view('home.my_post', compact('data'));
-        } else {
-            return redirect()->route('login');
-        }
+        
     }
 
     public function my_post_del($id) 

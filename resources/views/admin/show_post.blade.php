@@ -38,7 +38,7 @@
     <div class="d-flex align-items-stretch">
         @include('admin.sidebar')
         <div class="page-content"> 
-            @if(session()->has('message'))
+        @if(session()->has('message'))
                 <div class="alert alert-danger">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
                     {{ session()->get('message') }}
@@ -65,10 +65,13 @@
                         <td>{{ $post->name }}</td>
                         <td>{{ $post->post_status }}</td>
                         <td>{{ $post->usertype }}</td>
-                        <td><img class="img_deg" src="postimage/{{ $post->image }}"></td>
-                        <td><a href="{{ url('delete_post') }}" class="btn btn-danger" onclick="confirmation(event)">Delete</a></td>
+                        <td><img class="img_deg" src="postimage/{{$post->image}}"></td>
+                        <!--<td><a href="{{ url('delete_post', $post->id) }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this?')">Delete</a></td>-->
+
+                    <td><a href="{{ url('delete_post', $post->id) }}" class="btn btn-danger" onclick="confirmation(event)">Delete</a></td>
                         <td><a href="{{ url('edit_page', $post->id) }}" class="btn btn-success">Edit</a></td>
-                        <td><a onclick="return confirm('are you sure you want to accept it')" href="{{url('accept_post', $post->id)}}" class="btn btn-outline-secodary">Accept</a></td>
+                        
+                        <td><a onclick="return confirm('are you sure you want to accept it')" href="{{url('accept_post', $post->id)}}" class="btn btn-outline-secondary">Accept</a></td>
                         <td><a onclick="return confirm('are you sure you want to reject it')" href="{{url('reject_post', $post->id)}}" class="btn btn-primary">Reject</a></td>
                     
                     
@@ -77,21 +80,25 @@
             </table>
         </div>
         @include('admin.footer')
+
         <script type="text/javascript">
             function confirmation(ev)
             {
                 ev.preventDefault();
-                var urlToRedirect=ev.currentTarget.getAttribute('href');
+                var urlToRedirect = ev.currentTarget.getAttribute('href');
+                console.log(urlToRedirect)
                 swal({
                     title:"Are you Sure you want to delete this?",
                     text:"You won't be able to revert this delete",
                     icon:"warning",
-                    button:true,
+                    buttons:true,
                     dangerMode: true,
                 })
-                .then((willCancel){
-                    if(willCancel){
-                        windows.location.href=urlToRedirect;
+                .then((willCancel)=>
+                {
+                    if(willCancel)
+                    {
+                        window.location.href=urlToRedirect;
                     }
                 })
             }

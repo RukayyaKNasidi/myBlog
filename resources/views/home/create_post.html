@@ -1,0 +1,10 @@
+<div class="d-flex align-items-stretch">
+         
+    @if(session()->has('message'))
+      <div class="alert alert-success">
+        <button type="button" class="close" date-dismiss="alert" aria-hideen=""true>x</button>
+        {{session()->get('message')}}
+        @endif
+      </div>
+
+      

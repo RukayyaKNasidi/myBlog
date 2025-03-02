@@ -10,6 +10,19 @@ class AdminController extends Controller
 {
     public function index()
     {
+        if(Auth::id()){
+
+            $usertype=Auth()-user()->usertype;
+
+            if ($usertype == 'admin') {
+                return view('admin.adminhome', compact('post'));
+            } else if ($usertype == 'user') {
+                return view('home.homepage', compact('post'));
+            } else {
+                return view('home.homepage', compact('post'));
+            }
+        } else {
+        }
         return view('admin.adminhome');
     }
 
@@ -59,7 +72,7 @@ class AdminController extends Controller
         $post = Post::find($id);
         $post->delete();
 
-        return redirect()->back()->with('messge', 'Post Delete Successfully');
+        return redirect()->back()->with('message', 'Post Deleted Sucessfully');
     }
 
     public function edit_page($id){

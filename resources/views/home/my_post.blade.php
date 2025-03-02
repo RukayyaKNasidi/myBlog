@@ -39,19 +39,18 @@
         @endif
 
         @foreach($data as $data)
-        <div>
-            <h1 class="title_deg">Update Post</h1>
-            <form action="{{ url('update_post_data', $data->id) }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="post_deg">
+
+        <div class="post_deg">
+            
+                    <img class="img_deg" src="/postimage/{{ $data->image }}">
                     <h4 class="title_deg">{{ $data->title }}</h4>
                     <p class="des_deg">{{ $data->description }}</p>
-                    <img class="img_deg" src="/postimage/{{ $data->image }}">
+                    
 
-                    <button type="button" class="btn btn-danger" onclick="confirmDelete({{ $data->id }})">Delete</button>
+                   <a href="{{url('my_post_del',$data->id)}}" class="btn btn-danger" onclick="return confirm({{ $data->id }})">Delete</a>
                     <a href="{{ url('post_update_page', $data->id) }}" class="btn btn-primary">Update</a>
-                </div>
-            </form>
+                
+           
         </div>
         @endforeach
     </div>

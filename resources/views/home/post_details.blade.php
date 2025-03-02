@@ -30,7 +30,7 @@
         
 
       <!-- about section end -->
-      <!-- blog section start -->
+      <!-- blog section start 
       <div class="blog_section layout_padding">
          <div class="container">
             <h1 class="blog_taital">See Our  Video</h1>
@@ -40,8 +40,8 @@
             </div>
          </div>
       </div>
-      <!-- blog section end -->
-      <!-- client section start -->
+       blog section end -->
+      <!-- client section start 
       <div class="client_section layout_padding">
          <div class="container">
             <h1 class="client_taital">Testimonial</h1>
@@ -109,7 +109,7 @@
             </div>
          </div>
       </div>
-      <!-- client section start -->
+       client section start -->
       <!-- choose section start -->
       <div class="choose_section layout_padding">
          <div class="container">
@@ -128,9 +128,10 @@
       @foreach($post as $post)
                   
                   <div style="text-align:center" class="col-md-12">
-                     <div><img style="padding:20px; height:400px; width:550px; margin:auto;" src="/post/{{post->image}}" class="services_img"></div>
-                     <h4>{{$post->title}}</h4>
+                     <div><img style="padding:20px; height:400px; width:550px; margin:auto;" src="/postimage/{{post->image}}" class="services_img"></div>
+                     <h4><b>{{$post->title}}</b></h4>
                      <h4>{{$post->description}}</h4>
+                     <h4>Post by <b>{{$post->name}}</b></h4>
                     
                   </div>
                   @endforeach
